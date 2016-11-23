@@ -20,6 +20,7 @@ class FoaasField: JSONConvertible, CustomStringConvertible {
     }
     
     required init?(json: [String: AnyObject]) {
+        // more descriptive var names
         guard let nm = json["name"] as? String,
             let fld = json["field"] as? String
             else { return nil }
@@ -28,8 +29,7 @@ class FoaasField: JSONConvertible, CustomStringConvertible {
     }
     
     func toJson() -> [String : AnyObject] {
-        let json = ["name" : name as AnyObject,
-                    "field" : field as AnyObject]
-        return json
+        return ["name" : name as AnyObject,
+                "field" : field as AnyObject]
     }
 }
