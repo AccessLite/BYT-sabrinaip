@@ -19,13 +19,16 @@ import Foundation
 class FoaasOperation: JSONConvertible {
     let name: String
     let url: String
-    let fields: [[String:String]]
-    
+    let fields: [[String:String]] // this should be [FooasField]
+  
     required init?(json: [String: AnyObject]) {
+        // more descriptive var names
         guard let nm = json["name"] as? String,
             let u = json["url"] as? String,
             let flds = json["fields"] as? [[String:String]]
             else { return nil }
+      
+        // convert to [FooasField]
         name = nm
         url = u
         fields = flds
@@ -34,7 +37,7 @@ class FoaasOperation: JSONConvertible {
     func toJson() -> [String : AnyObject] {
         let json = ["name" : name as AnyObject,
                     "url" : url as AnyObject,
-                    "fields" : fields as AnyObject]
+                    "fields" : fields as AnyObject] // you'll need to change this a bit when you change to [FoaasField]
         return json
     }
     
